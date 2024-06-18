@@ -1,6 +1,8 @@
 <script>
 import {API_PEOPLE} from '../../constans/api.js'
+import {getPeopleId, getPeopleImage} from "@/services/getPeopleData.js";
 import {getApiResource} from "@/utils/network.js";
+
 
 export default {
   data() {
@@ -13,12 +15,15 @@ export default {
   beforeMount() {
     const  getResource = async (url) => {
       const api_data = await getApiResource(url)
-      console.log(api_data)
 
       this.peopleList = api_data.results.map(({name, url}) => {
+        const id = getPeopleId(url)
+        const img = getPeopleImage(id)
+        //console.log(img)
         return {
+          id,
           name,
-          url
+          img
         }
       })
       this.people = this.peopleList
@@ -33,7 +38,9 @@ export default {
 
 <template>
   <ul>
-    <li v-for="(elem,index) in this.people" :key='index' >{{elem.name}} </li>
+    <li v-for="(elem,index) in this.people" :key='index' >{{elem.name}}
+
+    </li>
   </ul>
 </template>
 
