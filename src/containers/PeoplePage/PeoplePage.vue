@@ -2,9 +2,10 @@
 import {API_PEOPLE} from '../../constans/api.js'
 import {getPeopleId, getPeopleImage} from "@/services/getPeopleData.js";
 import {getApiResource} from "@/utils/network.js";
-
+import itemsList from "@/components/PeoplePage/itemsList.vue";
 
 export default {
+  components: {itemsList},
   data() {
     return{
       API_PEOPLE: API_PEOPLE,
@@ -37,11 +38,9 @@ export default {
 
 
 <template>
-  <ul>
-    <li v-for="(elem,index) in this.people" :key='index' >{{elem.name}}
 
-    </li>
-  </ul>
+  <itemsList :peopleList="this.people"/>
+
 </template>
 
 
