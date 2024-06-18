@@ -16,8 +16,8 @@ export const getApiResource = async (url) => {
     }
 }
 
-(async () => {
-    const body = await getApiResource(API_PEOPLE)
-    console.log(body)
-})()
+// (async () => {
+//     const body = await getApiResource(API_PEOPLE)
+//     console.log(body)
+// })()
 
