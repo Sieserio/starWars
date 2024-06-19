@@ -34,9 +34,6 @@ export default {
       } else {
         this.error = true
       }
-
-
-      console.log(this.peopleList)
     }
     getResource(API_PEOPLE)
     },

@@ -1,0 +1,12 @@
+.not-found-text{
+    color: var(--color-white);
+    text-align: center;
+    margin-top: var(--spacing-medium);
+    font-size: var(--font-size-subHeader);
+    text-shadow: var(--text-shadow-blue);
+}
+
+.not-found-img{
+    width: 300px;
+    margin: 100px auto 0;
+}
