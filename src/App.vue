@@ -1,9 +1,13 @@
 <script >
-import {getApiResource} from "@/utils/network.js";
+import { createRouter } from 'vue-router'
 import PeoplePage from './containers/PeoplePage/PeoplePage.vue'
+import {getApiResource} from "@/utils/network.js";
+import  '@/components/Navigation/Navigation.vue'
+import Navigation from "@/components/Navigation/Navigation.vue";
 
 export default {
-  components : {PeoplePage},
+
+  components : {Navigation, PeoplePage},
 
 }
 
@@ -12,8 +16,9 @@ export default {
 
 
 <template>
-
-<PeoplePage/>
+  <Navigation/>
+<router-view></router-view>
+<!--<PeoplePage/>-->
 
 </template>
 

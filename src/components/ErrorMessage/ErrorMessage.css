@@ -1,0 +1,10 @@
+.error-text{
+    width: 600px;
+    margin: 150px auto  0;
+    line-height: 1.7;
+    font-size: var(--font-size-header);
+    text-align: center;
+    color: var(--color-yellow);
+
+    text-shadow: 0 0 3px var(--color-white);
+}

@@ -3,11 +3,17 @@
   --color-light-gray: #737373;
   --color-white : #fff;
   --color-black : #000;
+  --color-yellow : #ffff00;
 
+  --font-size-header : 26px;
   --font-family-main : sans-serif;
 
   --border-radius-small : 3px;
   --spacing-medium : 20px;
+
+  --transition : .4s;
+
+  --theme-default-header : #ffff00;
 }
 
 *{
@@ -18,6 +24,15 @@
 body{
   background-color:var(--color-dark-gray);
   font-family: var(--font-family-main);
+}
+
+.page-title{
+  color: var(--theme-default-header);
+  font-size: var(--font-size-header);
+  margin-top: var(--spacing-medium) ;
+  margin-left: var(--spacing-medium) ;
+
+  transition: color var(--transition);
 }
 
 /*@media (hover: hover) {*/
