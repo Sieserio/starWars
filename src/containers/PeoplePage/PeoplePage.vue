@@ -1,36 +1,44 @@
 <script>
 import itemsList from "@/components/PeoplePage/itemsList.vue";
 import ErrorMassage from "@/components/ErrorMessage/ErrorMassage.vue";
+import PeopleNav from "@/components/PeoplePage/PeopleNav/PeopleNav.vue";
 import {getApiResource} from "@/utils/network.js";
-import {getPeopleId, getPeopleImage} from "@/services/getPeopleData.js";
+import {getPeopleId, getPeopleImage, getPeoplePageId} from "@/services/getPeopleData.js";
 import {API_PEOPLE} from '@/constans/api.js'
 import {useQueryParams} from "@/hook/useQueryParams.js";
-import {useRoute} from "vue-router";
-import router from "@/router/index.js";
+
 
 export default {
-  components: {ErrorMassage, itemsList},
+  components: {PeopleNav, ErrorMassage, itemsList},
   data() {
     return{
       API_PEOPLE: API_PEOPLE,
       peopleList: null,
       error: false,
+      prevPage: null,
+      nextPage: null,
+      counterPage: 1,
     }
   },
   created() {
     const  getResource = async (url) => {
-      const api_data = await getApiResource(url)
-      if (api_data) {
-        this.peopleList = api_data.results.map(({name, url}) => {
-          const id = getPeopleId(url)
-          const img = getPeopleImage(id)
-          //console.log(img)
-          return {
-            id,
-            name,
-            img
-          }
-        })
+       const api_data = await getApiResource(url)
+        if (api_data) {
+          this.peopleList = api_data.results.map(({name, url}) => {
+            const id = getPeopleId(url)
+            const img = getPeopleImage(id)
+            return {
+              id,
+              name,
+              img
+            }
+          })
+        //console.log(api_data)
+        this.prevPage = api_data.previous
+        //console.log(this.prevPage)
+        this.nextPage = api_data.next
+        //console.log(this.nextPage)
+        this.counterPage = getPeoplePageId(url)
         this.error = false
       } else {
         this.error = true
@@ -40,14 +48,9 @@ export default {
     const query = useQueryParams()
     if (query.fullPath.includes('/people/?page=')) {
       const queryPage = query.fullPath.replace('/people/?page=', '')
-      console.log(queryPage)
-      console.log(query.fullPath)
       getResource(API_PEOPLE+queryPage)
-
     } else {
-      //this.$router.push({ path: '/people/?page=1' })
       const queryPage = 1
-      console.log(1)
       getResource(API_PEOPLE+queryPage)
     }
 
@@ -60,6 +63,7 @@ export default {
 
 <template>
   <h1 class="page-title">People</h1>
+  <PeopleNav  :prevPage="prevPage" :nextPage="nextPage" :counterPage="counterPage" :getRes="0" />
   <ErrorMassage v-if="error===true"/>
   <itemsList v-else-if="error===false" :peopleList="this.peopleList"/>
 <RouterView/>

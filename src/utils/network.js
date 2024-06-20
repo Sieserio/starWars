@@ -1,5 +1,8 @@
-import {API_PEOPLE} from "@/constans/api.js";
-import router from "@/router/index.js";
+/**
+ * Отправляет запрос fetch
+ * @param {String} url - url для запроса
+ * @returns {Promise} Promise с резульаттом запроса
+ */
 export const getApiResource = async (url) => {
 
     try {
@@ -15,9 +18,4 @@ export const getApiResource = async (url) => {
         return false;
     }
 }
-
-// (async () => {
-//     const body = await getApiResource(API_PEOPLE)
-//     console.log(body)
-// })()
 
