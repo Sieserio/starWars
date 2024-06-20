@@ -1,5 +1,5 @@
 <script >
-
+import router from "@/router/index.js";
 export default {
   props : {
     // getResource:{
@@ -15,6 +15,16 @@ export default {
       type: Number
     },
   },
+  computed : {
+    pathNew () {
+      return  '/people/?page=' + (this.counterPage + 1)
+    }
+  },
+  methods : {
+    goPath() {
+      console.log(1) // не работает переход с помощью кнопки, изменяется url но автоматически не переходит
+    }
+  }
 
 }
 </script>
@@ -22,7 +32,7 @@ export default {
 <template>
   <ul class="nav-list">
     <li class="nav-link">
-      <RouterLink :to="'/people/?page=' + (counterPage + 1)" class="nav-a">след</RouterLink>
+      <RouterLink :to="pathNew" @click="goPath()" class="nav-a">след</RouterLink>
     </li>
   </ul>
   <RouterView/>
