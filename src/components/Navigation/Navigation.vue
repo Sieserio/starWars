@@ -10,8 +10,8 @@ export default {
 <template>
   <div class="nav-wrapper">
     <ul class="nav-list">
-      <li class="nav-link"> <RouterLink to="/" class="nav-a">Home</RouterLink> </li>
-      <li class="nav-link"> <RouterLink to="/people" class="nav-a">People</RouterLink> </li>
+      <li class="nav-link"> <RouterLink :to="{name:'home'}" class="nav-a">Home</RouterLink> </li>
+      <li class="nav-link"> <RouterLink :to="{name:'people'}" class="nav-a">People</RouterLink> </li>
     </ul>
 
 

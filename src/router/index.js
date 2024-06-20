@@ -16,10 +16,11 @@ const router = createRouter({
         {
             path: '/people',
             name: 'people',
-            component: PeoplePage
+            component: PeoplePage,
+
         },
         {
-            path: '/:pathMatch(.*)*',
+            path: '/not-found',
             name: 'not-found',
             component: NotFoundPage
         },

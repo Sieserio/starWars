@@ -6,7 +6,7 @@ export default {
   methods: {
     getPath() {
       const route = useRoute();
-      const address = route.params.pathMatch[0] ;
+      const address = route.query['page'].replace(/^\//, '');;
       return address;
     }
   }

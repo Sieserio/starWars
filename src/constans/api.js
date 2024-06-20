@@ -5,7 +5,8 @@ export const HTTP = 'http://'
 //swapi
 export const SWAPI_ROOT = 'swapi.dev/api/'
 export const SWAPI_PEOPLE = 'people'
-export const API_PEOPLE = HTTPS+SWAPI_ROOT+SWAPI_PEOPLE
+export const SWAPI_PEOPLE_PAGE = '/?page='
+export const API_PEOPLE = HTTPS+SWAPI_ROOT+SWAPI_PEOPLE+SWAPI_PEOPLE_PAGE
 
 //visual guide
 
