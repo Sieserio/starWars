@@ -17,7 +17,13 @@ const router = createRouter({
             path: '/people',
             name: 'people',
             component: PeoplePage,
-
+            // children: [
+            //     {
+            //         path: '?:page',
+            //         component: PeoplePage,
+            //         props: true // Если вы хотите передать параметр `page` как prop в компонент
+            //     }
+            // ]
         },
         {
             path: '/not-found',

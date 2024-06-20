@@ -4,8 +4,9 @@ import ErrorMassage from "@/components/ErrorMessage/ErrorMassage.vue";
 import {getApiResource} from "@/utils/network.js";
 import {getPeopleId, getPeopleImage} from "@/services/getPeopleData.js";
 import {API_PEOPLE} from '@/constans/api.js'
-
-
+import {useQueryParams} from "@/hook/useQueryParams.js";
+import {useRoute} from "vue-router";
+import router from "@/router/index.js";
 
 export default {
   components: {ErrorMassage, itemsList},
@@ -35,7 +36,22 @@ export default {
         this.error = true
       }
     }
-    getResource(API_PEOPLE)
+
+    const query = useQueryParams()
+    if (query.fullPath.includes('/people/?page=')) {
+      const queryPage = query.fullPath.replace('/people/?page=', '')
+      console.log(queryPage)
+      console.log(query.fullPath)
+      getResource(API_PEOPLE+queryPage)
+
+    } else {
+      //this.$router.push({ path: '/people/?page=1' })
+      const queryPage = 1
+      console.log(1)
+      getResource(API_PEOPLE+queryPage)
+    }
+
+
     },
 
   }
