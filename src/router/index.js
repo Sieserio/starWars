@@ -3,6 +3,7 @@ import HomePage from "@/containers/HomePage/HomePage.vue";
 import PeoplePage from "@/containers/PeoplePage/PeoplePage.vue";
 import NotFoundPage from '@/containers/NotFoundPage/NotFoundPage.vue'
 import HookPeoplePage from "@/containers/PeoplePage/HookPeoplePage.vue";
+import TestPage from "@/containers/TestPage.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,6 +23,11 @@ const router = createRouter({
             path: '/test/people',
             name: 'test-people',
             component: HookPeoplePage,
+        },
+        {
+            path: '/test',
+            name: 'test',
+            component: TestPage,
         },
         {
             path: '/:pathMatch(.*)*',
