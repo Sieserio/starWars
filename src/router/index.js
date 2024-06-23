@@ -3,6 +3,7 @@ import HomePage from "@/containers/HomePage/HomePage.vue";
 import PeoplePage from "@/containers/PeoplePage/PeoplePage.vue";
 import NotFoundPage from '@/containers/NotFoundPage/NotFoundPage.vue'
 import HookPeoplePage from "@/containers/PeoplePage/HookPeoplePage.vue";
+import PersonPage from "@/containers/PersonPage.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,6 +18,11 @@ const router = createRouter({
             path: '/people',
             name: 'people',
             component: PeoplePage,
+        },
+        {
+            path: '/people/:id',
+            name: 'people-id',
+            component: PersonPage,
         },
         {
             path: '/test/people',
