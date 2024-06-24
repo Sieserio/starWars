@@ -7,6 +7,7 @@ import {useRoute} from "vue-router";
 import {getPeople} from "@/api/people.js";
 import {getPeopleId, getPeopleImage} from "@/services/getPeopleData.js";
 import router from "@/router/index.js";
+import '@/containers/PeoplePage/PeoplePage.css'
 
 export default {
   components: {PeopleNav, ErrorMassage, itemsList},
@@ -89,12 +90,16 @@ export default {
 
 <template>
   <h1 class="page-title">People</h1>
-  <h2 style="color: #6a83b4; font-size: 16px">{{page}}</h2>
+
+
+    <div class="navigation-page-wrapper">
+      <button @click="changePage(parseInt(page) - 1)" v-if="prevPage" class="navigation-btn nav-text">Prev</button>
+      <h2 class="navigation-page nav-text">{{page}}</h2>
+      <button @click="changePage(parseInt(page) + 1)" v-if="nextPage "class="navigation-btn nav-text">Next</button>
+    </div>
+
+
   <h2 style="color: #6a83b4; font-size: 16px" v-if="isLoading">Loading</h2>
-  <div>
-    <button @click="changePage(parseInt(page) - 1)" v-if="prevPage">Prev</button>
-    <button @click="changePage(parseInt(page) + 1)" v-if="nextPage">Next</button>
-  </div>
   <ErrorMassage v-if="error === true"/>
   <itemsList v-if="!error && !isLoading" :peopleList="peopleList"/>
   <RouterView/>
