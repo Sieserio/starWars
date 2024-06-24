@@ -5,6 +5,7 @@ import NotFoundPage from '@/containers/NotFoundPage/NotFoundPage.vue'
 import HookPeoplePage from "@/containers/PeoplePage/HookPeoplePage.vue";
 import PersonPage from "@/containers/PersonPage/PersonPage.vue";
 import PlanetsPage from "@/containers/PlanetsPage/PlanetsPage.vue";
+import PlanetPage from "@/containers/PlanetPage/PlanetPage.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,6 +25,11 @@ const router = createRouter({
             path: '/planets',
             name: 'planets',
             component: PlanetsPage,
+        },
+        {
+            path: '/planets/:id',
+            name: 'planet-id',
+            component: PlanetPage,
         },
         {
             path: '/people/:id',
