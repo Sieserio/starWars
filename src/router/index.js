@@ -3,7 +3,7 @@ import HomePage from "@/containers/HomePage/HomePage.vue";
 import PeoplePage from "@/containers/PeoplePage/PeoplePage.vue";
 import NotFoundPage from '@/containers/NotFoundPage/NotFoundPage.vue'
 import HookPeoplePage from "@/containers/PeoplePage/HookPeoplePage.vue";
-import PersonPage from "@/containers/PersonPage.vue";
+import PersonPage from "@/containers/PersonPage/PersonPage.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),

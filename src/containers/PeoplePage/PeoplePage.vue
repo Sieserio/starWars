@@ -38,11 +38,13 @@ export default {
     });
 
     const changePage = (newPage) => {
+      console.log(route.query)
       router.push({ query: { ...route.query, page: newPage.toString() } });
     };
 
     async function refactorPeopleList(peopleList) {
       if (peopleList) {
+        console.log(peopleList)
         return peopleList.map((item) => {
           const id = getPeopleId(item.url);
           return {
