@@ -25,10 +25,10 @@ export default {
 <template>
 
 <div class="category-wrapper">
-  <a :href=" '/'+ wayHref + '/' ">
+  <router-link :to=" '/'+ wayHref + '/' ">
     <img :src="src" :alt="title" class="category-img">
     <span :class="styles ">{{title.toUpperCase()}}</span>
-  </a>
+  </router-link>
 
 </div>
 
