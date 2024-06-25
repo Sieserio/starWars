@@ -1,0 +1,28 @@
+
+.category-wrapper{
+    position: relative;
+    width: 400px;
+}
+
+.category-img{
+    width: 100%;
+}
+
+.category-text{
+    display: block;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    top: 70%;
+    padding: 5px 0;
+    font-weight: bolder;
+    background: rgba(51,49,49, 0.5) ;
+}
+
+.color-red{
+    color: red;
+}
+
+.color-yellow{
+    color: var(--color-yellow);
+}
