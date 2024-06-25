@@ -1,19 +1,18 @@
 <script>
-import {ref, onMounted, watch, computed} from 'vue';
+import { ref, onMounted, watch, computed } from 'vue';
 import itemsList from "@/components/PeoplePage/itemsList.vue";
 import ErrorMassage from "@/components/ErrorMessage/ErrorMassage.vue";
 import PeopleNav from "@/components/PeoplePage/PeopleNav/PeopleNav.vue";
-import {useRoute} from "vue-router";
-import {getPeople} from "@/api/people.js";
-import {getPeopleId, getPeopleImage} from "@/services/getPeopleData.js";
+import TagSelector from "@/components/TagSelector.vue";
+import { useRoute } from "vue-router";
+import { getPeople, getPeopleTegs } from "@/api/people.js";
+import { getPeopleId, getPeopleImage } from "@/services/getPeopleData.js";
 import router from "@/router/index.js";
 
 export default {
-  components: {PeopleNav, ErrorMassage, itemsList},
+  methods: { getPeopleTegs },
+  components: { PeopleNav, ErrorMassage, itemsList, TagSelector },
   setup() {
-    // ref - аналог useState в реакте
-    // reactive - аналог useReducer в реакте
-    // По-хорошему делать не кучу ref, а один reactive объект
     const peopleList = ref(null);
     const error = ref(false);
     const prevPage = ref(null);
@@ -21,30 +20,28 @@ export default {
     const isLoading = ref(false);
     const route = useRoute();
 
-    // computed - аналог memo в реакте
-    const page = computed(() => {
-      return route.query.page || '1';
+    const page = computed(() => route.query.page || '1');
+
+    const tags = computed(() => {
+      const routeTags = route.query.tag;
+      return routeTags ? (Array.isArray(routeTags) ? routeTags : [routeTags]) : [];
     });
 
     onMounted(() => {
-      fetchData(parseInt(page.value));
+      fetchData(parseInt(page.value), tags.value);
     });
 
-    // Отслеживание изменений параметров URL
-    watch(() => route.query.page, (newValue, oldValue) => {
-      if (typeof newValue === 'string') {
-        fetchData(parseInt(newValue));
-      }
+    watch(() => [route.query.page, route.query.tag], (newValues) => {
+      const [newPage, newTags] = newValues;
+      fetchData(parseInt(newPage), tags.value);
     });
 
     const changePage = (newPage) => {
-      console.log(route.query)
-      router.push({ query: { ...route.query, page: newPage.toString() } });
+      router.push({query: {...route.query, page: newPage.toString()}});
     };
 
     async function refactorPeopleList(peopleList) {
       if (peopleList) {
-        console.log(peopleList)
         return peopleList.map((item) => {
           const id = getPeopleId(item.url);
           return {
@@ -56,13 +53,11 @@ export default {
       }
     }
 
-    async function fetchData(page)  {
+    async function fetchData(page, tags) {
       isLoading.value = true;
       try {
-        const response = await getPeople(page);
-        console.log(response);
+        const response = await getPeople(page, tags);
         peopleList.value = await refactorPeopleList(response.results);
-        console.log(peopleList.value);
         prevPage.value = response.previous;
         nextPage.value = response.next;
         error.value = false;
@@ -74,6 +69,8 @@ export default {
       }
     }
 
+    const availableTags = ['tag1', 'tag2', 'tag3', 'tag4'];
+
     return {
       peopleList,
       error,
@@ -81,7 +78,8 @@ export default {
       nextPage,
       changePage,
       isLoading,
-      page
+      page,
+      availableTags
     };
   }
 };
@@ -89,8 +87,9 @@ export default {
 
 <template>
   <h1 class="page-title">People</h1>
-  <h2 style="color: #6a83b4; font-size: 16px">{{page}}</h2>
+  <h2 style="color: #6a83b4; font-size: 16px">{{ page }}</h2>
   <h2 style="color: #6a83b4; font-size: 16px" v-if="isLoading">Loading</h2>
+  <TagSelector :availableTags="availableTags"/>
   <div>
     <button @click="changePage(parseInt(page) - 1)" v-if="prevPage">Prev</button>
     <button @click="changePage(parseInt(page) + 1)" v-if="nextPage">Next</button>
@@ -103,5 +102,3 @@ export default {
 <style>
 
 </style>
-
-<!--По поводу PeopleNav. Зачастую, не делают отдельные пагинаторы, как в твоем случае PeopleNav. Делают один и потом кидаются пропсами-->
