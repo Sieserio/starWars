@@ -17,7 +17,7 @@ import '@//components/PeoplePage/ItemsList.css'
 <template>
   <ul class="list-container">
     <li v-for="(elem,index) in peopleList" :key="index"  class="list-item" >
-      <a href="#" class="link-item">
+      <a :href="'/people/' + elem.id" class="link-item">
         <img :src="elem.img" alt="elem.name" class="person-img"/>
         <p class="person-name">{{elem.name}}</p>
       </a>

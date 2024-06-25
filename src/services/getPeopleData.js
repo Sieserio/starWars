@@ -1,14 +1,14 @@
 import {
-    HTTPS,SWAPI_ROOT,SWAPI_PEOPLE,
+    HTTPS, SWAPI_ROOT, SWAPI_PEOPLE,
     GUIDE_IMG_EXTENTION, URL_IMG_PERSON,
-    SWAPI_PARAM_PAGE
+    SWAPI_PARAM_PAGE, SWAPI_PLANETS, URL_IMG_PLANETS
 } from "@/constans/api.js";
 
-export const getPeoplePageId = url => {
-    const pos = url.lastIndexOf(SWAPI_PARAM_PAGE)
-    const id = url.slice(pos+SWAPI_PARAM_PAGE.length, url.length)
-    return Number(id)
-}
+// export const getPeoplePageId = url => {
+//     const pos = url.lastIndexOf(SWAPI_PARAM_PAGE)
+//     const id = url.slice(pos+SWAPI_PARAM_PAGE.length, url.length)
+//     return Number(id)
+// }
 
 const getId = (url, category) => {
     const id = url
@@ -16,5 +16,11 @@ const getId = (url, category) => {
         .replace(/\//g, '')
     return id;
 }
+
+
 export const getPeopleId = url => getId(url, SWAPI_PEOPLE)
 export const getPeopleImage = id => `${URL_IMG_PERSON}/${id+GUIDE_IMG_EXTENTION}`
+
+
+export const getPlanetsId = url => getId(url, SWAPI_PLANETS)
+export const getPlanetsImage = id => `${URL_IMG_PLANETS}/${id+GUIDE_IMG_EXTENTION}`

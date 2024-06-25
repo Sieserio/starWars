@@ -1,0 +1,20 @@
+.navigation-page-wrapper{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.navigation-page{
+    margin: 0 7px;
+}
+
+.navigation-btn:last-child{
+margin-right: 70px;
+}
+
+.nav-text{
+    font-size: var(--font-size-main);
+    color: var(--color-dark-gray);
+    background-color: var(--color-max-light-gray);
+    padding: 7px 7px;
+}
