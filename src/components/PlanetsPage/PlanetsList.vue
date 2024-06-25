@@ -16,7 +16,7 @@ export default {
   <ul class="list-container">
     <li v-for="(elem,index) in planetsList" :key="index" class="list-planets-item">
     <a :href=" '/planets/' + elem.id " class="link-planets-item">
-      <img :src=" elem.img" :alt="elem.name" class="planets-img" onerror="this.src='https://starwars-visualguide.com/assets/img/placeholder.jpg'">
+      <img :src=" elem.img" :alt="elem.name" class="planets-img" onerror="src='https://starwars-visualguide.com/assets/img/placeholder.jpg'">
       <p class="planets-name">{{elem.name}}</p>
     </a>
     </li>
