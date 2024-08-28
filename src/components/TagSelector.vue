@@ -30,7 +30,6 @@ export default {
     const route = useRoute();
     const router = useRouter();
     const activeTags = ref([])
-    console.log(activeTags.value)
 
     const addTag = () => {
       activeTags.value.push(selectedTag.value);
@@ -52,6 +51,7 @@ export default {
         }
         console.log(activeTags.value)
       }
+      console.log(activeTags.value)
     });
 
     return {
